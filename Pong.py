@@ -35,7 +35,7 @@ ball.color('white')
 ball.penup()
 ball.goto(0, 0)
 ball.dx = 0.5
-ball.dy = 0.5
+ball.dy = -0.5
 
 # function move paddles
 def paddle_a_up():
@@ -79,7 +79,19 @@ while True:
 	ball.setx(ball.xcor() + ball.dx)
 	ball.sety(ball.ycor() + ball.dy)
 
-	# Boreder checking
+	# Boreder checking Top Botton
 	if ball.ycor() > 290:
 		ball.sety(290)
 		ball.dy *= -1
+
+	if ball.ycor() < -290:
+		ball.sety(-290)
+		ball.dy *= -1
+	# Border Check Lefr and right
+	if ball.xcor() > 390:
+		ball.goto(0, 0)
+		ball.dx *= -1
+  
+	if ball.xcor() < -390:
+		ball.goto(0, 0)
+		ball.dx *= -1	
