@@ -7,7 +7,11 @@ wn = turtle.Screen()
 wn.title('pong by @TokyoEdTech')
 wn.bgcolor('black')
 wn.setup(width=800, height=600)
-wn.tracer(0) 
+wn.tracer(0)
+
+# Score 
+score_a = 0
+score_b = 0  
 
 #  Paddel a
 paddle_a = turtle.Turtle()
@@ -36,6 +40,16 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx = 0.5
 ball.dy = -0.5
+
+
+# Display scores
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color('white')
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write('Player A: 0  Player B: 0', align='center', font=('Courier', 24, 'normal'))
 
 # function move paddles
 def paddle_a_up():
@@ -88,14 +102,20 @@ while True:
 		ball.sety(-290)
 		ball.dy *= -1
 
-	# Border Check Lefr and right
+	# Border Check Left and right
 	if ball.xcor() > 390:
 		ball.goto(0, 0)
 		ball.dx *= -1
+		score_a += 1
+		pen.clear()
+		pen.write('Player A: {}  Player B: {}'.format(score_a, score_b), align='center', font=('Courier', 24, 'normal'))
   
 	if ball.xcor() < -390:
 		ball.goto(0, 0)
 		ball.dx *= -1
+		score_b +=1
+		pen.clear()
+		pen.write('Player A: {}  Player B: {}'.format(score_a, score_b), align='center', font=('Courier', 24, 'normal'))
 
 	# Paddle b and Ball collision
 	if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() -50):
