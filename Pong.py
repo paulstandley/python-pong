@@ -2,6 +2,7 @@
 # pong
 # setup
 import turtle
+import winsound
 
 wn = turtle.Screen()
 wn.title('pong by @TokyoEdTech')
@@ -41,7 +42,6 @@ ball.goto(0, 0)
 ball.dx = 0.5
 ball.dy = -0.5
 
-
 # Display scores
 pen = turtle.Turtle()
 pen.speed(0)
@@ -76,14 +76,12 @@ def paddle_b_down():
 	y += -20
 	paddle_b.sety(y)
  
-  
 # ketbord binding
 wn.listen()
 wn.onkeypress(paddle_a_up, 'w')
 wn.onkeypress(paddle_a_down, 's')
 wn.onkeypress(paddle_b_up, 'Up')
 wn.onkeypress(paddle_b_down, 'Down')
-
 
 # Main game loop
 while True:
@@ -95,10 +93,12 @@ while True:
 
 	# Boreder checking Top Botton
 	if ball.ycor() > 290:
+		winsound.PlaySound('bounce1.wav', winsound.SND_ASYNC)
 		ball.sety(290)
 		ball.dy *= -1
 
 	if ball.ycor() < -290:
+		winsound.PlaySound('bounce1.wav', winsound.SND_ASYNC)
 		ball.sety(-290)
 		ball.dy *= -1
 
@@ -119,10 +119,12 @@ while True:
 
 	# Paddle b and Ball collision
 	if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 50 and ball.ycor() > paddle_b.ycor() -50):
+		winsound.PlaySound('bounce1.wav', winsound.SND_ASYNC)
 		ball.setx(340)
 		ball.dx *= -1
 
 	# Paddle a and Ball collision
 	if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 50 and ball.ycor() > paddle_a.ycor() -50):
+		winsound.PlaySound('bounce1.wav', winsound.SND_ASYNC)
 		ball.setx(-340)
 		ball.dx *= -1
